@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   // selector: '[app-servers]',  using selector by atributes
@@ -6,14 +6,23 @@ import { Component } from '@angular/core';
   selector: 'app-servers',
   // template: `<app-server></app-server><app-server></app-server>`,
   templateUrl: './servers.component.html',
-  styleUrls: ['./servers.component.css']
+  styleUrls: ['./servers.component.css'],
 })
 export class ServersComponent {
-  allowNewServer = false;
-
+  allowNewServer = false
+  serverCreattionStatus = 'No server was created'
+  serverName = ''
   constructor() {
     setTimeout(() => {
       this.allowNewServer = true
-    },2000)
+    }, 2000)
+  }
+
+  onCreateServer() {
+    this.serverCreattionStatus = 'Server was created! Name is' + this.serverName
+  }
+  onUpdateServerName(event: any) {
+    this.serverName = (<HTMLInputElement>event.target).value
+    console.log(event.target.value)
   }
 }
